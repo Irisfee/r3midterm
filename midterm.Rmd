@@ -89,7 +89,7 @@ data_4 <- data_3 %>%
 ```{r}
 ## test the plot appearance on a single plot
 
-ggplot(data = data_5[[4]][[4]], aes(`Grade Level`,effect_size_white, fill = effect_size_white)) +
+p <- ggplot(data = data_5[[4]][[4]], aes(`Grade Level`,effect_size_white, fill = effect_size_white)) +
         geom_bar(stat = "identity", width = .5, alpha = 0.7) +
   coord_flip()  +
   theme_minimal() +
@@ -117,23 +117,26 @@ data_5 <- data_4 %>%
   select(-"del") %>% 
   group_by(`Academic Year`, `District ID`,`School ID`) %>% 
   nest() %>% 
-  slice(1:10) %>% 
-  mutate(plots = map(data, ~ ggplot(data = .x, aes(`Grade Level`,effect_size_white, fill = effect_size_white)) +
-        geom_bar(stat = "identity", width = .5, alpha = 0.7) +
-  coord_flip()  +
-    theme_minimal() +
-  labs(title = glue("Achievement Gap Estimates: ", unique(.x$School)),
+  slice(1:100) %>% 
+  mutate(plots = map(data, 
+                     ~ ggplot(data = .x, aes(`Grade Level`,effect_size_white, fill = effect_size_white)) + 
+                       geom_bar(stat = "identity", width = .5, alpha = 0.7) +
+                       coord_flip()  +
+                       theme_minimal() +
+                       labs(title = glue("Achievement Gap Estimates: ", unique(.x$School)),
        subtitle = "Students coded as White as compared to those coded as Hispanic/Latino",
        caption = glue("2017-18 School year, ", unique(.x$District), " School District, Oregon")) +
-    scale_fill_viridis() +
-  theme(legend.direction = "horizontal",
-      legend.title=element_blank(),
-      legend.justification=c(1,0),
-      legend.position=c(1,-.45),
-      plot.margin = margin(0.5, 0.5, 1.5, 0.5, "cm")
-      )+
-  xlab("Grade") +
-  ylab("Effect Size")))
+                        scale_fill_viridis() +
+                        theme(
+                                # legend.direction = "horizontal",
+                                legend.title=element_blank(),
+                                legend.position= "bottom"
+                                # legend.justification=c(1,0),
+                                # legend.position=c(1,-.45),
+                                # plot.margin = margin(0.5, 0.5, 1.5, 0.5, "cm")
+                                )+
+                        xlab("Grade") +
+                        ylab("Effect Size")))
 
 ```
 
@@ -149,4 +152,10 @@ data_6 <- data_5 %>%
 
 walk2(data_6$plots, data_6$plotnames, ~ ggsave(filename = .y, plot = .x, dpi = 300, path = plots_dir, width = 7, height = 8))
 ```
+
+
+
+
+
+
 
