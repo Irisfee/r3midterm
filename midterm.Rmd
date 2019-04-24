@@ -122,18 +122,19 @@ data_5 <- data_4 %>%
         geom_bar(stat = "identity", width = .5, alpha = 0.7) +
   coord_flip()  +
     theme_minimal() +
-  labs(title = glue("Achievement Gap Estimates: ", unique(data_5[[4]][[4]]$School)),
+  labs(title = glue("Achievement Gap Estimates: ", unique(.x$School)),
        subtitle = "Students coded as White as compared to those coded as Hispanic/Latino",
-       caption = glue("2017-18 School year, ", unique(data_5[[4]][[4]]$District), " School District, Oregon")) +
+       caption = glue("2017-18 School year, ", unique(.x$District), " School District, Oregon")) +
     scale_fill_viridis() +
   theme(legend.direction = "horizontal",
       legend.title=element_blank(),
       legend.justification=c(1,0),
-      legend.position=c(1,-.45), plot.margin = margin(0.5, 0.5, 1.5, 0.5, "cm")
+      legend.position=c(1,-.45),
+      plot.margin = margin(0.5, 0.5, 1.5, 0.5, "cm")
       )+
   xlab("Grade") +
-  ylab("Effect Size"))
-  )
+  ylab("Effect Size")))
+
 ```
 
 3. (10 points) Save the plots into a “plots” directory. Make sure the file names are meaningful.
