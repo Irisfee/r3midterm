@@ -128,12 +128,12 @@ data_5 <- data_4 %>%
        caption = glue("2017-18 School year, ", unique(.x$District), " School District, Oregon")) +
                         scale_fill_viridis() +
                         theme(
-                                # legend.direction = "horizontal",
+                                legend.direction = "horizontal",
                                 legend.title=element_blank(),
-                                legend.position= "bottom"
-                                # legend.justification=c(1,0),
-                                # legend.position=c(1,-.45),
-                                # plot.margin = margin(0.5, 0.5, 1.5, 0.5, "cm")
+                                # legend.position= "bottom"
+                                legend.justification=c(1,0),
+                                legend.position=c(1,-.45),
+                                plot.margin = margin(b = 5, r = 2, l =1, unit = "cm")
                                 )+
                         xlab("Grade") +
                         ylab("Effect Size")))

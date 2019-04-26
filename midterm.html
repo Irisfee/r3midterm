@@ -522,12 +522,12 @@ gap(data_3[1:4, ], &quot;White&quot;, &quot;Hispanic/Latino&quot;)</code></pre>
        caption = glue(&quot;2017-18 School year, &quot;, unique(.x$District), &quot; School District, Oregon&quot;)) +
                         scale_fill_viridis() +
                         theme(
-                                # legend.direction = &quot;horizontal&quot;,
+                                legend.direction = &quot;horizontal&quot;,
                                 legend.title=element_blank(),
-                                legend.position= &quot;bottom&quot;
-                                # legend.justification=c(1,0),
-                                # legend.position=c(1,-.45),
-                                # plot.margin = margin(0.5, 0.5, 1.5, 0.5, &quot;cm&quot;)
+                                # legend.position= &quot;bottom&quot;
+                                legend.justification=c(1,0),
+                                legend.position=c(1,-.45),
+                                plot.margin = margin(b = 5, r = 2, l =1, unit = &quot;cm&quot;)
                                 )+
                         xlab(&quot;Grade&quot;) +
                         ylab(&quot;Effect Size&quot;)))</code></pre>
